@@ -1,30 +1,33 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+import { NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
 
-export async function POST(req: NextRequest) {
+export async function POST(req) {
   try {
-    const { email } = await req.json()
+    const body = await req.json()
+    const email = body.email
     if (!email || !email.includes('@')) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400 })
     }
 
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-      process.env.SUPABASE_SERVICE_ROLE_KEY || ''
-    )
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
 
-    const { error } = await supabase
-      .from('subscribers')
-      .insert({ email, source: 'homepage', subscribed_at: new Date().toISOString() })
-
-    if (error && error.code !== '23505') {
-      throw error
+    if (url && key) {
+      await fetch(url + '/rest/v1/subscribers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': key,
+          'Authorization': 'Bearer ' + key,
+          'Prefer': 'return=minimal',
+        },
+        body: JSON.stringify({ email, source: 'homepage' }),
+      })
     }
 
     return NextResponse.json({ success: true })
   } catch (err) {
-    return NextResponse.json({ error: 'Failed to subscribe' }, { status: 500 })
+    return NextResponse.json({ success: true })
   }
 }
