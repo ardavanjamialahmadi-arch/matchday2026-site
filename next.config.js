@@ -6,9 +6,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  images: {
-    domains: ['flagcdn.com'],
-  },
 }
 
 module.exports = nextConfig

@@ -3,8 +3,6 @@ import Footer from '@/components/Footer'
 import NewsletterCTA from '@/components/NewsletterCTA'
 import Link from 'next/link'
 
-const GROUPS = ['A','B','C','D','E','F','G','H','I','J','K','L']
-
 const SAMPLE_MATCHES = [
   { id:1, home:'Mexico', away:'South Africa', homeFlag:'mx', awayFlag:'za', date:'Jun 11', time:'3:00 PM ET', stadium:'Estadio Azteca', group:'A', status:'upcoming' },
   { id:2, home:'Canada', away:'Bosnia', homeFlag:'ca', awayFlag:'ba', date:'Jun 12', time:'6:00 PM ET', stadium:'BMO Field, Toronto', group:'B', status:'upcoming' },
