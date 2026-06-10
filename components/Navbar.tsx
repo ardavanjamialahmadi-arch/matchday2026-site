@@ -14,7 +14,7 @@ export default function Navbar() {
           <span style={{ background: '#E63946', color: 'white', fontSize: 10, fontWeight: 700, padding: '2px 6px', borderRadius: 4, marginLeft: 4 }}>LIVE</span>
         </Link>
 
-        <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }} className="hidden md:flex">
+        <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
           {[
             { href: '/', label: 'Scores' },
             { href: '/predictions', label: 'Predict' },
