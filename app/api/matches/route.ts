@@ -1,11 +1,17 @@
 import { NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@supabase/supabase-js'
+
+export const dynamic = 'force-dynamic'
 
 export async function GET() {
   try {
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+    )
     const { data, error } = await supabase
       .from('matches')
-      .select(`*, team_home:teams!matches_team_home_fkey(name, flag_url), team_away:teams!matches_team_away_fkey(name, flag_url)`)
+      .select('*')
       .order('match_date', { ascending: true })
       .limit(20)
 
