@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #1A1A2E;
+  --darkbg: #0F0F1A;
+  --gold: #FFD700;
+  --red: #E63946;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0F0F1A;
+  color: #F0F0F0;
+  font-family: 'Inter', sans-serif;
+}
+
+.font-bebas {
+  font-family: 'Bebas Neue', cursive;
+}
+
+/* Stadium light animation */
+@keyframes stadiumGlow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.stadium-glow {
+  animation: stadiumGlow 3s ease-in-out infinite;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #1A1A2E; }
+::-webkit-scrollbar-thumb { background: #FFD700; border-radius: 3px; }
